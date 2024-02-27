@@ -1,1 +1,1 @@
-export { useModal } from "./simpleModal.jsx";
+export { UseModal } from "./simpleModal.jsx";

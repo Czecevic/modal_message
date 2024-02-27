@@ -1,6 +1,13 @@
 import { useEffect, useState } from "react";
+import "./simpleModal.css";
 
-export const UseModal = ({ employee, submitButton, setSubmitButton }) => {
+export const UseModal = ({
+  employee,
+  submitButton,
+  setSubmitButton,
+  messageError,
+  messageValid,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [saveEmployee, setSaveEmployee] = useState("");
 
@@ -28,7 +35,7 @@ export const UseModal = ({ employee, submitButton, setSubmitButton }) => {
           <button name="popupvalide" onClick={() => closeButton()}>
             X
           </button>
-          <p>Employee Created!</p>
+          <p>{messageValid}</p>
         </div>
       ) : (
         saveEmployee === "notAdd" && (
@@ -36,7 +43,7 @@ export const UseModal = ({ employee, submitButton, setSubmitButton }) => {
             <button name="popup" onClick={() => closeButton()}>
               X
             </button>
-            <p>Employee was not created, check your information</p>
+            <p>{messageError}</p>
           </div>
         )
       )}
