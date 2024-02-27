@@ -21,7 +21,7 @@ useModal was used as this :
         employee={employee}
         submitButton={submitButton}
         setSubmitButton={setSublmitButton}
-        messageValidation={messageValidation}
+        messageValid={messageValidation}
         messageError={messageError}
       ></UseModal>
 ```
@@ -41,9 +41,9 @@ add error message and validation message :
   const messageError = "remove element";
 ```
 
-- messageValidation affichera un text vert
+- messageValid will display green text
 
-- messageError affichera un text rouge
+- messageError will display red text
 
 the `employee` is considered an object, add it as such :
 
@@ -52,4 +52,51 @@ the `employee` is considered an object, add it as such :
     firstName: "",
     lastName: "",
   });
+```
+
+## exemple
+
+```
+import { useState } from "react";
+import { UseModal } from "react_modal_openclassrooms";
+import "./App.css";
+
+function App() {
+  const [employee, setEmployee] = useState({
+    firstName: "",
+    lastName: "",
+  });
+  const [submitButton, setSublmitButton] = useState(false);
+
+  const messageValidation = "valide message";
+  const messageError = "error message";
+
+  const addEmployee = (e) => {
+    e.preventDefault();
+    const { firstName, lastName } = e.target.elements;
+    setEmployee({ firstName: firstName.value, lastName: lastName.value });
+  };
+
+  return (
+    <div>
+      <form onSubmit={(e) => addEmployee(e)}>
+        <input name="firstName"></input>
+        <input name="lastName"></input>
+        <button type="submit" onClick={() => setSublmitButton(true)}>
+          submit
+        </button>
+      </form>
+      <UseModal
+        employee={employee}
+        submitButton={submitButton}
+        setSubmitButton={setSublmitButton}
+        messageValid={messageValidation}
+        messageError={messageError}
+      ></UseModal>
+    </div>
+  );
+}
+
+export default App;
+
 ```
