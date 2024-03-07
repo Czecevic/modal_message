@@ -7,20 +7,25 @@ export const UseModal = ({
   setSubmitButton,
   messageError,
   messageValid,
+  validCondition = true,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [saveEmployee, setSaveEmployee] = useState("");
-
-  const isEmployeeFilled = Object.values(employee).every((value) => !!value);
+  const isEmployeeFilled = employee
+    ? Object.values(employee).every((value) => !!value)
+    : Object.values(employee.current).every((value) => !!value);
   useEffect(() => {
-    if (isEmployeeFilled && submitButton) {
+    if (isEmployeeFilled && submitButton && validCondition) {
       setSaveEmployee("add");
       setIsOpen(true);
-    } else if (!isEmployeeFilled && submitButton) {
+    } else if (
+      (!isEmployeeFilled && submitButton) ||
+      (isEmployeeFilled && submitButton)
+    ) {
       setSaveEmployee("notAdd");
       setIsOpen(true);
     }
-  }, [isEmployeeFilled, submitButton]);
+  }, [validCondition, isEmployeeFilled, submitButton]);
 
   const closeButton = () => {
     setSaveEmployee("");

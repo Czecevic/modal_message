@@ -65,16 +65,28 @@ function App() {
   const [employee, setEmployee] = useState({
     firstName: "",
     lastName: "",
+    number: 0,
   });
   const [submitButton, setSublmitButton] = useState(false);
+  const [condition, setCondition] = useState(false);
 
   const messageValidation = "valide message";
   const messageError = "error message";
 
   const addEmployee = (e) => {
     e.preventDefault();
-    const { firstName, lastName } = e.target.elements;
-    setEmployee({ firstName: firstName.value, lastName: lastName.value });
+    const { firstName, lastName, number } = e.target.elements;
+    setEmployee({
+      firstName: firstName.value,
+      lastName: lastName.value,
+      number: number.value,
+    });
+    // optional condition to see your valid message
+    if (number.value < 10) {
+      setCondition(false);
+    } else {
+      setCondition(true);
+    }
   };
 
   return (
@@ -82,6 +94,7 @@ function App() {
       <form onSubmit={(e) => addEmployee(e)}>
         <input name="firstName"></input>
         <input name="lastName"></input>
+        <input name="number"></input>
         <button type="submit" onClick={() => setSublmitButton(true)}>
           submit
         </button>
@@ -92,11 +105,13 @@ function App() {
         setSubmitButton={setSublmitButton}
         messageValid={messageValidation}
         messageError={messageError}
+        validCondition={condition}
       ></UseModal>
     </div>
   );
 }
 
 export default App;
+
 
 ```

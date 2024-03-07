@@ -7,11 +7,8 @@
   border-radius: 15px;
   background: #1a1a1a;
   color: crimson;
-  display: flex;
-  justify-content: space-between;
   padding: 15px;
-  flex-direction: row-reverse;
-  align-items: flex-start;
+  display: block;
 }
 
 .popupvalide {
@@ -23,16 +20,17 @@
   border-radius: 15px;
   background: #1a1a1a;
   color: lightgreen;
-  display: flex;
-  justify-content: space-between;
   padding: 15px;
-  flex-direction: row-reverse;
-  align-items: flex-start;
+  display: block;
 }
 
-.popup button {
+.popup button,
+.popupvalide button {
   border: none;
   background: none;
   padding: 0;
   margin: 0;
+  position: absolute;
+  right: 5%;
+  top: 10%;
 }
