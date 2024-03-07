@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./simpleModal.css";
 
 export const UseModal = ({
@@ -11,9 +11,10 @@ export const UseModal = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [saveEmployee, setSaveEmployee] = useState("");
-  const isEmployeeFilled = employee
-    ? Object.values(employee).every((value) => !!value)
-    : Object.values(employee.current).every((value) => !!value);
+  const isEmployeeFilled =
+    employee.current === undefined
+      ? Object.values(employee).every((value) => !!value)
+      : Object.values(employee.current).every((value) => !!value);
   useEffect(() => {
     if (isEmployeeFilled && submitButton && validCondition) {
       setSaveEmployee("add");
